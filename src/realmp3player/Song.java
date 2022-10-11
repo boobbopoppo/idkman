@@ -4,22 +4,30 @@
  */
 package realmp3player;
 
-import java.nio.file.Path;
+import jaco.mp3.player.MP3Player;
+import java.io.File;
+import static realmp3player.InputClass.player;
+
 
 /**
  *
  * @author costantinot
  */
 class Song {
-    private Path file;
+    File file;
     String title;
     String album;
     String artist;
     private String year;
-    Song (Path File, String Title, String Album, String Artist){
+    Song (File File, String Title, String Album, String Artist){
         this.file = File;
         this.title = Title;
         this.album = Album;
         this.artist = Artist;
+    }
+    public static void PlaySong(File f) {
+        System.gc();
+        player = new MP3Player(f);
+        player.play();
     }
 }

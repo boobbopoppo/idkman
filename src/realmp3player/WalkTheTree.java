@@ -40,7 +40,7 @@ public class WalkTheTree extends SimpleFileVisitor<Path>{
                  if (mp3file.hasId3v1Tag()) {
                      ID3v1 id3v1Tag = mp3file.getId3v1Tag();
                      
-                    Song song = new Song(file, id3v1Tag.getTitle() , id3v1Tag.getArtist(), id3v1Tag.getAlbum());
+                    Song song = new Song(file.toFile(), id3v1Tag.getTitle() , id3v1Tag.getArtist(), id3v1Tag.getAlbum());
                     UnknownParameters(song);
                     // System.out.println(file.getFileName());
                     allmymusic.add(song);
@@ -48,13 +48,13 @@ public class WalkTheTree extends SimpleFileVisitor<Path>{
                  else if (mp3file.hasId3v2Tag()){
                      ID3v2 id3v2Tag = mp3file.getId3v2Tag();
                      // System.out.println(file.getFileName());
-                     Song song = new Song(file, id3v2Tag.getTitle(), id3v2Tag.getArtist(), id3v2Tag.getAlbum());
+                     Song song = new Song(file.toFile(), id3v2Tag.getTitle(), id3v2Tag.getArtist(), id3v2Tag.getAlbum());
                      UnknownParameters(song);
                      allmymusic.add(song);
                  }
                  else {
                      mp3file.removeCustomTag();
-                     Song song = new Song (file, file.toString(), "Unknown artist", "Unknown album");
+                     Song song = new Song (file.toFile(), file.toString(), "Unknown artist", "Unknown album");
                      UnknownParameters(song);
                      allmymusic.add(song);
                  }
